@@ -12,12 +12,12 @@ def store(request):
     else:
         items = []
         order = {'get_cart_total':0, 'get_cart_item':0, 'shipping':False}
-        cartItems = order['get_cart_items']
+        cartItems = order['get_cart_item']
 
     products = Product.objects.all()
     context = {
         'products':products,
-        'cartItems':cartItems,
+        'cartItems':cartItems
     }
     return render(request, 'store/store.html', context)
 
@@ -31,7 +31,7 @@ def cart(request):
     else:
         items = []
         order = {'get_cart_total':0, 'get_cart_item':0, 'shipping':False}
-        cartItems = order['get_cart_items']
+        cartItems = order['get_cart_item']
 
     context = {
         'items':items,
@@ -49,7 +49,7 @@ def checkout(request):
     else:
         items = []
         order = {'get_cart_total':0, 'get_cart_item':0, 'shipping':False}
-        cartItems = order['get_cart_items']
+        cartItems = order['get_cart_item']
 
     context = {
         'items':items,
@@ -83,5 +83,6 @@ def updateItem(request):
 
     return JsonResponse('Item was added', safe=False)
 
-
+def processOrder(request):
+    return JsonResponse('Payment complete!', safe=False)
 
